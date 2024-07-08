@@ -1,8 +1,9 @@
-use crate::app::App;
-use ratatui::crossterm::event::{KeyCode, KeyEvent, KeyEventKind};
-use ratatui::Frame;
-use ratatui::layout::{Constraint, Layout, Rect};
+use ratatui::crossterm::event::KeyEvent;
+use ratatui::layout::{Constraint, Layout};
 use ratatui::widgets::{Block, Borders};
+use ratatui::Frame;
+
+use crate::app::{App, AppView};
 use crate::views::{Command, Screen};
 
 pub struct MenuView {}
@@ -16,17 +17,17 @@ impl MenuView {
 impl Screen for MenuView {
     fn draw(&self, f: &mut Frame, app: &App) {
         let chunks = Layout::default()
-            .constraints([Constraint::Percentage(100)].as_ref())
+            .constraints([Constraint::Percentage(20)].as_ref())
             .split(f.size());
 
-        let block = Block::default()
-            .title("Menu")
-            .borders(Borders::ALL);
+        let block = Block::default().title("Menu").borders(Borders::ALL);
 
         f.render_widget(block, chunks[0]);
     }
 
-    fn handle_event(&mut self, _event: KeyEvent) -> Option<Command> {
+    fn handle_event(&self, _event: KeyEvent, app: &mut App) -> Option<Command> {
+        println!("Changing to ProductView");
+        app.set_screen(AppView::Product);
         None
         // Handle events specific to Home screen
     }
