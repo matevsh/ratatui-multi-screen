@@ -10,8 +10,6 @@ use ratatui::{backend::CrosstermBackend, Terminal};
 
 use app::App;
 
-use crate::views::Command;
-
 mod app;
 mod views;
 
@@ -47,18 +45,10 @@ fn run_app<B: ratatui::backend::Backend>(terminal: &mut Terminal<B>) -> io::Resu
         terminal.draw(|f| app.view.draw(f, &app))?;
 
         if let Event::Key(key) = event::read()? {
-            let command = match key.code {
+            match key.code {
                 KeyCode::Char('q') => return Ok(()),
                 _ => app.clone().view.handle_event(key, &mut app),
             };
-
-            let Some(command) = command else { continue };
-
-            match command {
-                Command::SetScreen(screen) => {
-                    app.set_screen(screen);
-                }
-            }
         }
     }
 }
