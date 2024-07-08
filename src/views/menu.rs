@@ -6,6 +6,7 @@ use ratatui::Frame;
 use crate::app::{App, AppView};
 use crate::views::{Command, Screen};
 
+#[derive(Clone)]
 pub struct MenuView {}
 
 impl MenuView {

@@ -40,7 +40,6 @@ fn main() -> Result<(), Box<dyn Error>> {
 fn run_app<B: ratatui::backend::Backend>(terminal: &mut Terminal<B>) -> io::Result<()> {
     let mut app = App::new();
 
-    println!("Current view: {:?}", app.view.type_id());
     loop {
         terminal.draw(|f| app.view.draw(f, &app))?;
 

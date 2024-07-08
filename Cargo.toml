@@ -6,3 +6,4 @@ edition = "2021"
 [dependencies]
 ratatui = "0.27.0"
 log = "0.4.22"
+dyn-clone = "1.0.17"
