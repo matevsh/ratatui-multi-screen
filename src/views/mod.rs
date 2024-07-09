@@ -11,5 +11,5 @@ pub enum Command {
 
 pub trait Screen {
     fn draw(&self, f: &mut Frame, app: &App);
-    fn handle_event(&mut self, event: KeyEvent) -> Option<Command>;
+    fn handle_event(&self, event: KeyEvent, app: &mut App) -> Option<Command>;
 }
